@@ -1,4 +1,4 @@
-# electron-quick-start
+# 桌面级应用数据筛选软件
 
 **Clone and run for a quick way to see Electron in action.**
 
