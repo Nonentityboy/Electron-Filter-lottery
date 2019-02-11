@@ -43,9 +43,25 @@
   }
 
   button {
+    width: 80px;
+    /* 宽度 */
+    height: 40px;
+    /* 高度 */
+    border-width: 0px;
+    /* 边框宽度 */
+    border-radius: 3px;
+    /* 边框半径 */
     background: #CC0000;
-    color: #fff;
-    padding: 10px;
+    /* 背景颜色 */
+    cursor: pointer;
+    /* 鼠标移入按钮范围时出现手势 */
+    outline: none;
+    /* 不显示轮廓线 */
+    font-family: Microsoft YaHei;
+    /* 设置字体 */
+    color: white;
+    /* 字体颜色 */
+    font-size: 12px;
   }
 
   .body .body-header {
@@ -102,7 +118,9 @@
             <div>002</div>
             <div>003</div>
           </div>
-          <div id="pailie3" style="width:300px;height: 230px;border:1px solid #ddd;overflow:yes; overflow-y:scroll; overflow-y:yes;">请将排列三文件拖拽至此处</div>
+          <div id="pailie3"
+            style="width:300px;height: 230px;border:1px solid #ddd;overflow:yes; overflow-y:scroll; overflow-y:yes;">
+            请将排列三文件拖拽至此处</div>
         </div>
         <div class="footer">
           <input type="file" id="btn_file" style="display:none">
@@ -123,7 +141,9 @@
             <div>004</div>
             <div>005</div>
           </div>
-          <div id="pailie5" style="width:300px;height:230px;border:1px solid #ddd;overflow:yes; overflow-y:scroll; overflow-y:yes;">请将排列五文件拖拽至此处</div>
+          <div id="pailie5"
+            style="width:300px;height:230px;border:1px solid #ddd;overflow:yes; overflow-y:scroll; overflow-y:yes;">
+            请将排列五文件拖拽至此处</div>
         </div>
         <div class="footer">
           <button onclick="Executive()">执行过滤</button>
@@ -132,7 +152,13 @@
         </div>
       </div>
     </div>
-    <div style="color:#999999;margin-left:25px;">由为之工作室提供技术支持</div>
+    <div style="display: flex;flex-direction: row;align-items: center;">
+      <img src="logo.jpg" alt="Powered_Wizz" style="
+      width: 30px;
+      height: 30px;margin-left:25px;
+  ">
+      <div style="color:#999999;">由为之工作室提供技术支持</div>
+    </div>
   </div>
 
 
@@ -261,8 +287,8 @@
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
               if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100
-               + parseInt((numFile5[j] % 10000) / 1000) * 10 
-               + parseInt((numFile5[j] % 1000) / 100)) {
+                + parseInt((numFile5[j] % 10000) / 1000) * 10
+                + parseInt((numFile5[j] % 1000) / 100)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -274,9 +300,9 @@
           //124
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 + 
-              parseInt((numFile5[j] % 10000) / 1000) * 10 +
-              parseInt((numFile5[j]% 100) / 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
+                parseInt((numFile5[j] % 10000) / 1000) * 10 +
+                parseInt((numFile5[j] % 100) / 10)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -288,9 +314,9 @@
           //125
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 + 
-              parseInt((numFile5[j] % 10000) / 1000) * 10 + 
-              parseInt(numFile5[j]% 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
+                parseInt((numFile5[j] % 10000) / 1000) * 10 +
+                parseInt(numFile5[j] % 10)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -302,9 +328,9 @@
           //134
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 + 
-              parseInt((numFile5[j]% 1000) / 100) * 10 + 
-              parseInt((numFile5[j]% 100) / 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
+                parseInt((numFile5[j] % 1000) / 100) * 10 +
+                parseInt((numFile5[j] % 100) / 10)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -316,9 +342,9 @@
           //135
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 + 
-              parseInt((numFile5[j]% 1000) / 100) * 10 + 
-              parseInt(numFile5[j]% 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
+                parseInt((numFile5[j] % 1000) / 100) * 10 +
+                parseInt(numFile5[j] % 10)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -330,9 +356,9 @@
           //145
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 + 
-              parseInt((numFile5[j]% 100) / 10) * 10 + 
-              parseInt(numFile5[j]% 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
+                parseInt((numFile5[j] % 100) / 10) * 10 +
+                parseInt(numFile5[j] % 10)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -344,9 +370,9 @@
           //234
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j]% 10000) / 1000) * 100 + 
-              parseInt((numFile5[j]% 1000) / 100) * 10 + 
-              parseInt((numFile5[j]% 100) / 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 10000) / 1000) * 100 +
+                parseInt((numFile5[j] % 1000) / 100) * 10 +
+                parseInt((numFile5[j] % 100) / 10)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -358,9 +384,9 @@
           //245
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j]% 10000) / 1000) * 100 + 
-              parseInt((numFile5[j]% 100) / 10) * 10 + 
-              parseInt(numFile5[j]% 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 10000) / 1000) * 100 +
+                parseInt((numFile5[j] % 100) / 10) * 10 +
+                parseInt(numFile5[j] % 10)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -372,9 +398,9 @@
           //235
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j]% 10000) / 1000) * 100 + 
-              parseInt((numFile5[j]% 1000) / 100) * 10 + 
-              parseInt(numFile5[j]% 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 10000) / 1000) * 100 +
+                parseInt((numFile5[j] % 1000) / 100) * 10 +
+                parseInt(numFile5[j] % 10)) {
                 endNum.push(numFile5[j]);
               }
             }
@@ -386,9 +412,9 @@
           //345
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j]% 1000) / 100) * 100 + 
-              parseInt((numFile5[j]% 100) / 10) * 10 + 
-              parseInt(numFile5[j]% 10)) {
+              if (numFile3[i] === parseInt((numFile5[j] % 1000) / 100) * 100 +
+                parseInt((numFile5[j] % 100) / 10) * 10 +
+                parseInt(numFile5[j] % 10)) {
                 endNum.push(numFile5[j]);
               }
             }
