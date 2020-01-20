@@ -47,22 +47,22 @@ npm install electron-packager -g //安装electron打包工具electron-packager
 // 配置打包命令
 "scripts": {
     "start": "electron .",
-    "pack": "electron-packager . myClient --win --out ../myClient --arch=x64 --app-version=0.0.1 --electron-version=2.0.0"
+    "pack": "electron-packager . Electron-Filter-lottery --win --out ../Electron-Filter-lottery --arch=x64 --app-version=0.0.1 --electron-version=2.0.0"
 }
 
-“.”：需要打包的应用目录（即当前目录），
+"."：需要打包的应用目录（即当前目录），
 
-“myClient”：应用名称，
+"Electron-Filter-lottery"：应用名称，
 
-“--win”：打包平台（以Windows为例），
+"--win"：打包平台（以Windows为例），
 
-“--out ../myClient”：输出目录，
+"--out ../Electron-Filter-lottery"：输出目录，
 
-“--arch=64”：64位，
+"--arch=64"：64位，
 
-“--app-version=0.0.1”：应用版本，
+"--app-version=0.0.1"：应用版本，
 
-“--electron-version=2.0.0”：electron版本
+"--electron-version=2.0.0"：electron版本
 ```
 
 执行打包命令：
