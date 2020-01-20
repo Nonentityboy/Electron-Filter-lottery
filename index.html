@@ -130,7 +130,7 @@
       </div>
       <div class="menu">
         <div class="header" style="justify-content: space-between;">
-          <div>比对位数</div>
+          <div>排列五</div>
           <button onclick="F_Open_dialog5()">导入排列五</button>
         </div>
         <div class="body">
@@ -142,7 +142,7 @@
             <div>005</div>
           </div>
           <div id="pailie5"
-            style="width:300px;height:230px;border:1px solid #ddd;overflow:yes; overflow-y:scroll; overflow-y:yes;">
+            style="width:300px;height:230px;border:1px solid #ddd;overflow:yes; overflow-y:scroll; overflow-y:yes;overflow-x:no;">
             请将排列五文件拖拽至此处</div>
         </div>
         <div class="footer">
@@ -221,10 +221,24 @@
       console.log(file)
       pathFile5 = e.dataTransfer.files[0];
       fs.readFile(file.path, 'utf8', function (err, data) {
+        console.log(data)
         pailie5.textContent = data;
-        let b = data.split(" ").filter(function (s) {
-          return s && s.trim(); // 注：IE9(不包含IE9)以下的版本没有trim()方法
-        });
+        let b;
+        if (data.indexOf(" ") == -1) {
+          b = data.split(",").filter(function (s) {
+            return s && s.trim(); // 注：IE9(不包含IE9)以下的版本没有trim()方法
+          });
+        } else {
+          b = data.split(" ").filter(function (s) {
+            return s && s.trim(); // 注：IE9(不包含IE9)以下的版本没有trim()方法
+          });
+        }
+        // let b = data.split(" ").filter(function (s) {
+        //   return s && s.trim(); // 注：IE9(不包含IE9)以下的版本没有trim()方法
+        // });
+        // let b = data.split(",").filter(function (s) {
+        //   return s && s.trim(); // 注：IE9(不包含IE9)以下的版本没有trim()方法
+        // });
         endNum = [];
         c = b.map(Number);
         numFile5 = c;
@@ -258,12 +272,48 @@
     }
     //导出功能
     function setUp() {
-      fs.writeFile(pathFile5.path, endNum, function (err) {
-        if (!err) {
-          alert(`${pathFile5.name}文件改写并导出成功！`)
+      var os = require('os');
+      var path = os.homedir();
+      var fs = require('fs');
+      fs.writeFile(path + "/test.txt", endNum, function (err) {
+        if (err) {
+          return console.log(err);
         }
-      })
-      console.log(endNum)
+        alert(`文件改写并导出成功！`)
+      });
+
+      //        var os = require('os');
+      //                           var path = os.homedir();
+      //         var createFolder = function(to) { //文件写入
+      //             var sep = path.sep
+      //             var folders = path.dirname(to).split(sep);
+      //             var p = '';
+      //             while (folders.length) {
+      //                 p += folders.shift() + sep;
+      //                 if (!fs.existsSync(p)) {
+      //                     fs.mkdirSync(p);
+      //                 }
+      //             }
+      //         }
+      //         createFolder('/publis/out.txt');
+      // fs.createWriteStream('public/out.txt')
+
+
+      // var os = require('os');
+      // var homedir = os.homedir();
+      // var fs = require('fs');
+      // fs.link("/test.txt", endNum, function (err) {
+      //   if (err) {
+      //     return console.log(err);
+      //   }
+      //   console.log("The file was saved!");
+      // });
+      // fs.writeFile(pathFile5.path, endNum, function (err) {
+      //   if (!err) {
+      //     alert(`${pathFile5.name}文件改写并导出成功！`)
+      //   }
+      // })
+      // console.log(endNum)
     }
     //执行过滤功能
     function Executive() {
@@ -286,10 +336,11 @@
           ///123
           for (var i = 0; i < numFile3.length; i++) {
             for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100
+              if (numFile3[i] === parseInt(parseInt((numFile5[j] % 100000) / 10000) * 100
                 + parseInt((numFile5[j] % 10000) / 1000) * 10
-                + parseInt((numFile5[j] % 1000) / 100)) {
-                endNum.push(numFile5[j]);
+                + parseInt((numFile5[j] % 1000) / 100))) {
+
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -303,7 +354,7 @@
               if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
                 parseInt((numFile5[j] % 10000) / 1000) * 10 +
                 parseInt((numFile5[j] % 100) / 10)) {
-                endNum.push(numFile5[j]);
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -317,7 +368,7 @@
               if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
                 parseInt((numFile5[j] % 10000) / 1000) * 10 +
                 parseInt(numFile5[j] % 10)) {
-                endNum.push(numFile5[j]);
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -331,7 +382,7 @@
               if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
                 parseInt((numFile5[j] % 1000) / 100) * 10 +
                 parseInt((numFile5[j] % 100) / 10)) {
-                endNum.push(numFile5[j]);
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -345,7 +396,7 @@
               if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
                 parseInt((numFile5[j] % 1000) / 100) * 10 +
                 parseInt(numFile5[j] % 10)) {
-                endNum.push(numFile5[j]);
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -359,7 +410,7 @@
               if (numFile3[i] === parseInt((numFile5[j] % 100000) / 10000) * 100 +
                 parseInt((numFile5[j] % 100) / 10) * 10 +
                 parseInt(numFile5[j] % 10)) {
-                endNum.push(numFile5[j]);
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -373,7 +424,7 @@
               if (numFile3[i] === parseInt((numFile5[j] % 10000) / 1000) * 100 +
                 parseInt((numFile5[j] % 1000) / 100) * 10 +
                 parseInt((numFile5[j] % 100) / 10)) {
-                endNum.push(numFile5[j]);
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -387,7 +438,7 @@
               if (numFile3[i] === parseInt((numFile5[j] % 10000) / 1000) * 100 +
                 parseInt((numFile5[j] % 100) / 10) * 10 +
                 parseInt(numFile5[j] % 10)) {
-                endNum.push(numFile5[j]);
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -401,7 +452,7 @@
               if (numFile3[i] === parseInt((numFile5[j] % 10000) / 1000) * 100 +
                 parseInt((numFile5[j] % 1000) / 100) * 10 +
                 parseInt(numFile5[j] % 10)) {
-                endNum.push(numFile5[j]);
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
@@ -410,21 +461,35 @@
           && document.getElementById("Contrast4").style.backgroundColor === "rgb(0, 0, 0)"
           && document.getElementById("Contrast5").style.backgroundColor === "rgb(0, 0, 0)") {
           //345
-          for (var i = 0; i < numFile3.length; i++) {
-            for (var j = 0; j < numFile5.length; j++) {
-              if (numFile3[i] === parseInt((numFile5[j] % 1000) / 100) * 100 +
+          for (let i = 0; i < numFile3.length; i++) {
+            for (let j = 0; j < numFile5.length; j++) {
+              if ( parseInt((numFile5[j] % 1000) / 100) * 100 +
                 parseInt((numFile5[j] % 100) / 10) * 10 +
-                parseInt(numFile5[j] % 10)) {
-                endNum.push(numFile5[j]);
+                parseInt(numFile5[j] % 10)  === numFile3[i]) {
+                endNum.push(buquan(numFile5[j], 5));
               }
             }
           }
         }
         endNum.myUnique();
+        endNum = endNum.join(' ')
         pailie5.textContent = endNum;
         alert(`${pathFile5.name}执行过滤成功！`)
       }
     }
+
+    // 补全数字
+    function buquan(num, length) {
+      var numstr = num.toString();
+      var l = numstr.length;
+      if (numstr.length >= length) { return numstr; }
+
+      for (var i = 0; i < length - l; i++) {
+        numstr = "0" + numstr;
+      }
+      return numstr;
+    }
+
 
     //数组去重 // 使用时直接调用 arr.myUnique();
     Array.prototype.myUnique = function myUnique() {
