@@ -93,3 +93,43 @@ npm run pack
 ![过滤成功](https://user-gold-cdn.xitu.io/2020/1/20/16fc33ef60ccf724?w=772&h=573&f=png&s=39753)
 
 此时点击导出按钮，可以最终导出需要的`排列五`号码。
+
+## 我学到什么？
+
+### Electron 应用架构
+
+#### 主进程与渲染进程
+
+Electron运行`package.json`的 `main` 脚本的进程被称为`主进程`。 
+在主进程中运行的脚本通过创建web页面来展示用户界面。 一个 Electron 应用总是有且只有一个主进程。
+
+Electron 使用了 Chromium 来展示 web 页面，所以 Chromium 的多进程架构也被使用到。 每个 Electron 中的 web 页面运行在它自己的渲染进程中。
+
+普通的浏览器中，web页面通常在沙盒环境中运行，并且无法访问操作系统的原生资源。 然而 Electron 的用户在 Node.js 的 API 支持下可以在页面中和操作系统进行一些底层交互。
+
+### 主进程和渲染进程之间的区别
+
+主进程使用 BrowserWindow 实例创建页面。 每个 BrowserWindow 实例都在自己的渲染进程里运行页面。 当一个 BrowserWindow 实例被销毁后，相应的渲染进程也会被终止。
+
+主进程管理所有的web页面和它们对应的渲染进程。 每个渲染进程都是独立的，它只关心它所运行的 web 页面。
+
+页面中调用与 GUI 相关的原生 API 是不被允许的，因为在 web 页面里操作原生的 GUI 资源是非常危险的，而且容易造成资源泄露。 如果你想在 web 页面里使用 GUI 操作，其对应的渲染进程必须与主进程进行通讯，请求主进程进行相关的 GUI 操作。
+
+> 题外话：进程间通讯
+Electron为主进程 `main process`和渲染器进程`renderer processes`通信提供了多种实现方式，如可以使用`ipcRenderer` 和 `ipcMain`模块发送消息，使用 `remote模块`进行`RPC`方式通信。 
+
+> 如何在两个网页间共享数据？
+在两个网页（渲染进程）间共享数据最简单的方法是使用浏览器中已经实现的 HTML5 API。 其中比较好的方案是用 Storage API， localStorage，sessionStorage 或者 IndexedDB。
+
+你还可以用 Electron 内的 IPC 机制实现。将数据存在主进程的某个全局变量中，然后在多个渲染进程中使用 remote 模块来访问它。
+
+```js
+// 在主进程中
+global.sharedObject = {
+  someProperty: 'default value'
+}
+// 在第一个页面中
+require('electron').remote.getGlobal('sharedObject').someProperty = 'new value'
+// 在第二个页面中
+console.log(require('electron').remote.getGlobal('sharedObject').someProperty)
+```
