@@ -1,0 +1,92 @@
+.container {
+    height: 420px;
+    width: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 25px;
+    margin-bottom: 0;
+  }
+
+  .menu {
+    height: 425px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #dddddd;
+  }
+
+  .header {
+    width: 300px;
+    height: 50px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #dddddd;
+    padding: 10px 0;
+  }
+
+  .header div {
+    margin: 0 3px;
+  }
+
+  button {
+    width: 80px;
+    /* 宽度 */
+    height: 40px;
+    /* 高度 */
+    border-width: 0px;
+    /* 边框宽度 */
+    border-radius: 3px;
+    /* 边框半径 */
+    background: #CC0000;
+    /* 背景颜色 */
+    cursor: pointer;
+    /* 鼠标移入按钮范围时出现手势 */
+    outline: none;
+    /* 不显示轮廓线 */
+    font-family: Microsoft YaHei;
+    /* 设置字体 */
+    color: white;
+    /* 字体颜色 */
+    font-size: 12px;
+  }
+
+  .body .body-header {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    margin: 10px 0;
+    justify-content: space-around;
+    align-items: center;
+    background: #EEBCAB;
+    border: 1px solid #dddddd;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: space-between;
+  }
+
+  .circle {
+    font-size: 14px;
+    height: 26px;
+    width: 26px;
+    border-radius: 13px 13px;
+    display: flex;
+    box-sizing: border-box;
+  }
+
+  .circle span {
+    line-height: 30px;
+    color: #fff;
+    height: 30px;
+    text-align: center;
+    width: 30px;
+  }
